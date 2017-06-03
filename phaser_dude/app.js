@@ -113,11 +113,11 @@ player.body.velocity.x = 0;
 if(cursors.left.isDown){
   //move left
   player.body.velocity.x = -150
-  player.animation.play('left');
+  player.animations.play('left');
 }else if(cursors.right.isDown){
   //move right
   player.body.velocity.x = 150
-  player.animation.play('right');
+  player.animations.play('right');
 }else{
   player.animations.stop();
   player.frame = 4;
@@ -189,6 +189,6 @@ function loseLifeLeft(player,enemy){
   //remove and respawn enemy
   enemy.kill();
   enemy.reset(10,20);
-  
+
 }
 
