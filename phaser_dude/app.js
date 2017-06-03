@@ -181,3 +181,14 @@ function loseLife(player,enemy){
   enemy.kill();
   enemy.reset(10, 20);
 }
+//define loseLifeLeft
+function loseLifeLeft(player,enemy){
+  //loselife
+   life -= 1;
+  lifetext.setText(life);
+  //remove and respawn enemy
+  enemy.kill();
+  enemy.reset(10,20);
+  
+}
+
