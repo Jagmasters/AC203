@@ -152,9 +152,9 @@ if(enemy3.x > 759){
 //collide stars with platform
 game.physics.arcade.collide(stars,platforms);
 game.physics.arcade.overlap(player, stars,collectStar, null, null)
-game.physics.arcade.overlaps(player, enemy1, loseLife, null, null)
-game.physics.arcade.overlaps(player, enemy2, loseLifeLeft, null, null)
-game.physics.arcade.overlaps(player, enemy3, loseLife, null, null)
+game.physics.arcade.overlap(player, enemy1, loseLife, null, null)
+game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, null)
+game.physics.arcade.overlap(player, enemy3, loseLife, null, null)
 }
 
 //define collectStar function
