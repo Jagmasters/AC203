@@ -172,7 +172,7 @@ function collectStar(player,star){
     star.body.bounce.y =0.7 + Math.random()*0.2;
 }
 //define loseLife
-function loselife(player,enemy){
+function loseLife(player,enemy){
   //loselife
   life -= 1;
   lifetext.setText(life);
