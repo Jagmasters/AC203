@@ -112,11 +112,11 @@ player.body.velocity.x = 0;
 //player movement by keys
 if(cursors.left.isDown){
   //move left
-  player.body.velocity.x = -150
+  player.body.velocity.x = -500
   player.animations.play('left');
 }else if(cursors.right.isDown){
   //move right
-  player.body.velocity.x = 150
+  player.body.velocity.x = 500
   player.animations.play('right');
 }else{
   player.animations.stop();
