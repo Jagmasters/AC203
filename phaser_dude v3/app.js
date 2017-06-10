@@ -10,7 +10,7 @@ function preload(){
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 
-  game.load.image('bullet', 'bullet.png')
+  game.load.image('bullet', 'assets/bullet.png')
 }
 
 function create(){
@@ -153,11 +153,11 @@ function update(){
   //player movement by keys
   if(cursors.left.isDown){
     //move left
-    player.body.velocity.x = -150;
+    player.body.velocity.x = -400;
     player.animations.play('left');
   } else if(cursors.right.isDown){
     //move right
-    player.body.velocity.x = 150;
+    player.body.velocity.x = 400;
     player.animations.play('right');
   } else {
     player.animations.stop();
