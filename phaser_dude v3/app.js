@@ -10,7 +10,7 @@ function preload(){
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 
-  game.load.image('bullet', 'fireball.png')
+  game.load.image('bullet', 'bullet.png')
 }
 
 function create(){
