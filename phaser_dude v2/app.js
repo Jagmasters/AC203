@@ -10,6 +10,9 @@ function preload(){
   game.load.image('star', 'assets/star.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+
+  //v2 - load health packs
+  game.load.image('health','assets/firstaid.png')
 }
 
 function create(){
@@ -78,6 +81,10 @@ function create(){
     star.body.bounce.y = 0.7 + Math.random() * 0.2;
   }
 
+  //vs -create health pack group
+  healths = game.physicsGroup();
+  healths.enableBody = true;
+
   //set the text style
   var style = {font:"bold 32px Arial",fill:"*fff",boundsAlignH:"center",boundsAlignV:"middle"};
   //positioning the score
@@ -97,12 +104,6 @@ function create(){
   lifetext.setShadow(3,3,'rgba(0,0,0,0.5',2);
   lifelabel.setTextBounds(0,520,800,100);
   lifetext.setTextBounds(0,520,800,100);
-
-  //v2 -game over text
-  goText = game.add.text(0,0,'',style)
-  goText.setShadow(3,3,'rgba(0,0,0,0.5',2)
-  goText.setTextBounds(100,200,800,100);
-  goText.visible = false;
 }
 
 function update(){
@@ -131,7 +132,7 @@ if(cursors.left.isDown){
 
 //allow the player to jump if touching the ground
 if(cursors.up.isDown && player.body.touching.down){
-  player.body.velocity.y = -400;
+  player.body.velocity.y = -700;
 }
 //Enemy Ai
 if(enemy1.x > 759){
@@ -161,15 +162,6 @@ game.physics.arcade.overlap(player, stars,collectStar, null, null)
 game.physics.arcade.overlap(player, enemy1, loseLife, null, null)
 game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, null)
 game.physics.arcade.overlap(player, enemy3, loseLife, null, null)
-
-//v2 - collide for health pack
-game.physics.arcade.collide(healths, platforms)
-game.phsyics.arcade.overlap(player,healths,collectHealth,null,this);
-
-//v2 - check if there are no more lives
-if(life < 0){
-  endGame();
-}
 }
 
 //define collectStar function
@@ -184,13 +176,7 @@ function collectStar(player,star){
     //create new star
     star = stars.create(Math.floor(Math.random()*750),0,'star');
     star.body.gravity.y = 200;
-      star.body.bounce.y =0.7 + Math.random()*0.2;
-
-      //v2 - create health pack if collected multiple of 5
-      if(score % 5 == 0){
-        health = healths.create(Math.floor(Math.random()*750),0,'health');
-        health.body.gravity.y = 200;
-      }
+    star.body.bounce.y =0.7 + Math.random()*0.2;
 }
 //define loseLife
 function loseLife(player,enemy){
@@ -211,39 +197,5 @@ function loseLifeLeft(player,enemy){
   enemy.kill();
   enemy.reset(10,20);
 
-}
-
-//v2 - define collectHealth
-function collectHealth(player,health){
-  life += 1;
-  lifetext.setText(life);
-  health.kill();
-}
-
-//v2 - define end game
-function endGame(){
-  player.kill();
-  goText.text = "GAME OVER! \n You Score" + score + "\n Press Enter to try again...";
-  goText.visible = true;
-  scorelabel.visible = false;
-  scoretext.visible = false;
-  lifelabel.visible = false;
-  lifetext.visible = false;
-
-  //call restart game when enter is pressed
-  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-
-
-}
-function restartGame(){
-  score = 0;
-  life = 5;
-  player.reset(32, 400);
-  goText.visible = false;
-  scorelabel.visible = true;
-  scoretext.visible = true;
-  lifelabel.visible = true;
-  lifetext.visible = true;
-}
 }
 
