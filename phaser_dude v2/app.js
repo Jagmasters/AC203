@@ -82,7 +82,7 @@ function create(){
   }
 
   //vs -create health pack group
-  healths = game.physicsGroup();
+  healths = game.add.physicsGroup();
   healths.enableBody = true;
 
   //set the text style
