@@ -11,8 +11,9 @@ function preload(){
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 
-  //v2 - load health packs
+  //v2 - load health packs and fireball
   game.load.image('health','assets/firstaid.png')
+  game.load.image('fireball','fireball.png')
 }
 
 function create(){
@@ -162,6 +163,11 @@ game.physics.arcade.overlap(player, stars,collectStar, null, null)
 game.physics.arcade.overlap(player, enemy1, loseLife, null, null)
 game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, null)
 game.physics.arcade.overlap(player, enemy3, loseLife, null, null)
+
+if(life < 0){
+  endGame();
+}
+
 }
 
 //define collectStar function
@@ -177,6 +183,11 @@ function collectStar(player,star){
     star = stars.create(Math.floor(Math.random()*750),0,'star');
     star.body.gravity.y = 200;
     star.body.bounce.y =0.7 + Math.random()*0.2;
+
+    if(score%10 == 0){
+      health = healths.create(Math.floor(Math.random()*750),0,'health');
+      health.body.gravity.y = 200;
+    }
 }
 //define loseLife
 function loseLife(player,enemy){
