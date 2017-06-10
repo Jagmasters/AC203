@@ -156,8 +156,8 @@ if(enemy3.x > 759){
   enemy3.body.velocity.x = 50
 }
 //collide stars with platform
-game.physics.arcade.collide(stars,platforms);
-game.physics.arcade.overlap(player, stars,collectStar, null, null)
+game.physics.arcade.collide(star,platforms);
+game.physics.arcade.overlap(player, star,collectStar, null, null)
 game.physics.arcade.overlap(player, enemy1, loseLife, null, null)
 game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, null)
 game.physics.arcade.overlap(player, enemy3, loseLife, null, null)
@@ -182,7 +182,7 @@ function collectStar(player,star){
     scoretext.setText(score);
    
     //create new star
-    star = stars.create(Math.floor(Math.random()*750),0,'star');
+    star = star.create(Math.floor(Math.random()*750),0,'star');
     star.body.gravity.y = 200;
       star.body.bounce.y =0.7 + Math.random()*0.2;
 
