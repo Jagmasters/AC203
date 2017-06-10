@@ -198,4 +198,33 @@ function loseLifeLeft(player,enemy){
   enemy.reset(10,20);
 
 }
+//V2 - define end game
+function endGame(){
+  player.kill();
+  goText.text = "GAME OVER! \n You scored " + score + "\n Press Enter to try again...";
+  goText.visible = true;
+  scorelabel.visible = false;
+  scoretext.visible = false;
+  lifelabel.visible = false;
+  lifetext.visible = false;
+
+  //Call restart game when enter is pressed
+  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  restartButton.onDown.addOnce(restartGame);
+}
+
+function restartGame(){
+  score = 0;
+  life = 3;
+  player.reset(32, 400);
+  lifetext.setText(life);
+  scoretext.setText(32,400);
+  goText.visible = false;
+  scorelabel.visible = true;
+  scoretext.visible = true;
+  lifelabel.visible = true;
+  lifetext.visible = true;
+}
+
+
 
